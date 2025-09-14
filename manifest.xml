@@ -49,6 +49,6 @@
         <ExtendedPermission>Mailbox</ExtendedPermission>
     </ExtendedPermissions>
     <Events>
-        <Event Type="ItemSend" FunctionFile="https://your-frontend-host/onsend.html" FunctionName="onMessageSendHandler"/>
+        <Event Type="ItemSend" FunctionFile="https://onboardiq.netlify.app/onsend.html" FunctionName="onMessageSendHandler"/>
     </Events>
 </OfficeApp>
