@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Get Tickets</title>
-    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-    <script src="taskpane.js"></script>
+    <meta charset="UTF-8">
+    <title>Ticket System Task Pane</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .period { margin-bottom: 10px; }
+        button { padding: 10px; cursor: pointer; }
+    </style>
 </head>
 <body>
-    <h1>Select Period</h1>
-    <select id="period">
-        <option value="today">Today</option>
-        <option value="last30">Last 30 Days</option>
-        <option value="last365">Last 365 Days</option>
-    </select>
+    <h3>Select Period</h3>
+    <div class="period">
+        <input type="radio" name="period" value="today" checked> Today<br>
+        <input type="radio" name="period" value="last30"> Last 30 Days<br>
+        <input type="radio" name="period" value="last365"> Last 365 Days
+    </div>
     <button id="getTickets">Get Tickets</button>
-    <div id="status"></div>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script src="taskpane.js"></script>
 </body>
 </html>

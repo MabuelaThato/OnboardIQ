@@ -1,92 +1,54 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
-  <Id>your-guid-here</Id> <!-- Generate a GUID -->
-  <Version>1.0.0.0</Version>
-  <ProviderName>Your Company</ProviderName>
-  <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Ticket System Add-in"/>
-  <Description DefaultValue="Forward emails to create tickets."/>
-  <IconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/> <!-- Replace with your icon -->
-  <SupportUrl DefaultValue="https://your-support-url.com"/>
-  <AppDomains>
-    <AppDomain>https://localhost:7000</AppDomain> <!-- Backend URL -->
-  </AppDomains>
-  <Hosts>
-    <Host Name="Mailbox"/>
-  </Hosts>
-  <Requirements>
-    <Sets DefaultMinVersion="1.1">
-      <Set Name="Mailbox" MinVersion="1.1"/>
-    </Sets>
-  </Requirements>
-  <FormSettings>
-    <Form xsi:type="ItemRead">
-      <DesktopSettings>
-        <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
+           xmlns:mail="http://schemas.microsoft.com/office/mailapp/1.1" 
+           xsi:type="MailApp">
+    <Id>your-unique-guid-here</Id>
+    <Version>1.0.0.0</Version>
+    <ProviderName>Your Company</ProviderName>
+    <DefaultLocale>en-US</DefaultLocale>
+    <DefaultSettings>
+        <SourceLocation DefaultValue="https://your-frontend-host/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
-      </DesktopSettings>
-    </Form>
-  </FormSettings>
-  <Permissions>ReadWriteMailbox</Permissions>
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
-    <Requirements>
-      <bt:Sets DefaultMinVersion="1.3">
-        <bt:Set Name="Mailbox" MinVersion="1.3"/>
-      </bt:Sets>
-    </Requirements>
-    <Hosts>
-      <Host xsi:type="MailHost">
-        <DesktopFormFactor>
-          <FunctionFile resid="functionFile"/>
-          <ExtensionPoint xsi:type="LaunchEvent">
-            <LaunchEvents>
-              <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" SendMode="SoftBlock"/>
-            </LaunchEvents>
-            <SourceLocation resid="functionFile"/>
-          </ExtensionPoint>
-          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
-            <OfficeTab id="TabDefault">
-              <Group id="msgComposeGroup">
-                <Label resid="groupLabel"/>
-                <Control xsi:type="Button" id="msgComposeOpenPaneButton">
-                  <Label resid="paneComposeButtonLabel"/>
-                  <Supertip>
-                    <Title resid="paneComposeSuperTipTitle"/>
-                    <Description resid="paneComposeSuperTipDescription"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="icon16"/>
-                    <bt:Image size="32" resid="icon32"/>
-                    <bt:Image size="80" resid="icon80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="taskpaneUrl"/>
-                  </Action>
-                </Control>
-              </Group>
-            </OfficeTab>
-          </ExtensionPoint>
-        </DesktopFormFactor>
-      </Host>
-    </Hosts>
+    </DefaultSettings>
+    <Permissions>ReadWriteMailbox</Permissions>
+    <Rule xsi:type="RuleCollection" Mode="Or">
+        <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit"/>
+    </Rule>
+    <DisableEntityHighlighting>false</DisableEntityHighlighting>
+    <FormSettings>
+        <Form xsi:type="ItemEdit">
+            <DesktopSettings>
+                <SourceLocation DefaultValue="https://your-frontend-host/onsend.html"/>
+            </DesktopSettings>
+        </Form>
+    </FormSettings>
+    <Control xsi:type="Button" id="TaskPaneButton">
+        <Label resid="TaskPaneButton.Label"/>
+        <Supertip>
+            <Title resid="TaskPaneButton.Label"/>
+            <Description resid="TaskPaneButton.Tooltip"/>
+        </Supertip>
+        <Action xsi:type="ShowTaskpane">
+            <SourceLocation resid="TaskPane.Url"/>
+        </Action>
+    </Control>
     <Resources>
-      <bt:Images>
-        <bt:Image id="icon16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
-        <bt:Image id="icon32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
-        <bt:Image id="icon80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
-      </bt:Images>
-      <bt:Urls>
-        <bt:Url id="functionFile" DefaultValue="https://localhost:3000/onsend.html"/>
-        <bt:Url id="taskpaneUrl" DefaultValue="https://localhost:3000/taskpane.html"/>
-      </bt:Urls>
-      <bt:ShortStrings>
-        <bt:String id="groupLabel" DefaultValue="Ticket System"/>
-        <bt:String id="paneComposeButtonLabel" DefaultValue="Get Tickets"/>
-        <bt:String id="paneComposeSuperTipTitle" DefaultValue="Get Your Tickets"/>
-      </bt:ShortStrings>
-      <bt:LongStrings>
-        <bt:String id="paneComposeSuperTipDescription" DefaultValue="Opens a pane to get your tickets."/>
-      </bt:LongStrings>
+        <bt:Urls>
+            <bt:Url id="TaskPane.Url" DefaultValue="https://your-frontend-host/taskpane.html"/>
+        </bt:Urls>
+        <bt:ShortStrings>
+            <bt:String id="TaskPaneButton.Label" DefaultValue="Ticket"/>
+        </bt:ShortStrings>
+        <bt:LongStrings>
+            <bt:String id="TaskPaneButton.Tooltip" DefaultValue="View and manage ticket summaries for OnboardIQ"/>
+        </bt:LongStrings>
     </Resources>
-  </VersionOverrides>
+    <ExtendedPermissions>
+        <ExtendedPermission>Mailbox</ExtendedPermission>
+    </ExtendedPermissions>
+    <Events>
+        <Event Type="ItemSend" FunctionFile="https://your-frontend-host/onsend.html" FunctionName="onMessageSendHandler"/>
+    </Events>
 </OfficeApp>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Submit IBS Number</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        label { display: block; margin-bottom: 10px; }
+        input, button { padding: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h3>Submit IBS Number</h3>
+    <form id="ibsForm">
+        <label>Ticket ID: <span id="ticketId"></span></label>
+        <label>IBS Number: <input type="text" name="ibsNumber" required></label>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const ticketId = urlParams.get('id');
+        document.getElementById('ticketId').textContent = ticketId;
+
+        document.getElementById('ibsForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const ibsNumber = e.target.ibsNumber.value;
+            fetch(`https://onboardiq-backend-1-0-0.onrender.com/tickets/${ticketId}/update`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `ibsNumber=${encodeURIComponent(ibsNumber)}`
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'https://onboardiq-backend-1-0-0.onrender.com/static/success.html';
+                } else {
+                    alert('Failed to update ticket.');
+                }
+            })
+            .catch(error => alert('Network error: ' + error.message));
+        });
+    </script>
+</body>
+</html>

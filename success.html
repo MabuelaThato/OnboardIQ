@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
+<body>
+    <h3>Operation Successful</h3>
+    <p>Your request has been processed.</p>
+    <script>
+        if (window.opener) {
+            window.opener.postMessage('success', '*');
+            window.close();
+        }
+    </script>
+</body>
+</html>
