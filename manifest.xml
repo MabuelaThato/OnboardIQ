@@ -9,7 +9,7 @@
     <ProviderName>Your Company</ProviderName>
     <DefaultLocale>en-US</DefaultLocale>
     <DefaultSettings>
-        <SourceLocation DefaultValue="https://your-frontend-host/taskpane.html"/>
+        <SourceLocation DefaultValue="https://onboardiq.netlify.app/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
     </DefaultSettings>
     <Permissions>ReadWriteMailbox</Permissions>
@@ -20,7 +20,7 @@
     <FormSettings>
         <Form xsi:type="ItemEdit">
             <DesktopSettings>
-                <SourceLocation DefaultValue="https://your-frontend-host/onsend.html"/>
+                <SourceLocation DefaultValue="https://onboardiq.netlify.app/onsend.html"/>
             </DesktopSettings>
         </Form>
     </FormSettings>
@@ -36,7 +36,7 @@
     </Control>
     <Resources>
         <bt:Urls>
-            <bt:Url id="TaskPane.Url" DefaultValue="https://your-frontend-host/taskpane.html"/>
+            <bt:Url id="TaskPane.Url" DefaultValue="https://onboardiq.netlify.app/taskpane.html"/>
         </bt:Urls>
         <bt:ShortStrings>
             <bt:String id="TaskPaneButton.Label" DefaultValue="Ticket"/>
