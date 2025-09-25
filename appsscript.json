@@ -9,13 +9,16 @@
   ],
   "addOns": {
     "common": {
-      "name": "Ticket System",
-      "logoUrl": "https://your-logo.png",
+      "name": "OnboardIQ",
+      "logoUrl": "https://www.canva.com/design/DAGrAd0tV34/wFiIlM9xq2GvZwtV_5m6AA/edit?utm_content=DAGrAd0tV34&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
       "homepageTrigger": {
         "runFunction": "onHomepage"
       }
     },
     "gmail": {
+      "homepageTrigger": {
+        "runFunction": "onHomepage"
+      },
       "contextualTriggers": [
         {
           "unconditional": {},
@@ -23,8 +26,11 @@
         }
       ],
       "openLinkUrlPrefixes": [
-        "https://your-backend.example.com"
+        "https://onboardiq-backend-1-0-0.onrender.com/"
       ]
     }
-  }
+  },
+  "urlFetchWhitelist": [
+    "https://onboardiq-backend-1-0-0.onrender.com/"
+  ]
 }

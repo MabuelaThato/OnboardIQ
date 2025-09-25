@@ -101,8 +101,12 @@ function showTicketsForm(e) {
     .setOnClickAction(action));
 
   card.addSection(section);
-  return CardService.newNavigation().pushCard(card.build());
+
+  return CardService.newActionResponseBuilder()
+    .setNavigation(CardService.newNavigation().pushCard(card.build()))
+    .build();
 }
+
 
 /*************
  * Call backend to email tickets
