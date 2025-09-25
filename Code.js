@@ -52,9 +52,11 @@ function getContextualAddOn(e) {
  * Action: Create ticket
  *************/
 function createTicket(e) {
+  var accessToken = e.parameters.accessToken;
   var messageId = e.parameters.messageId;
 
-  var message = GmailApp.getMessageById(messageId);
+  var message = GmailAppMessage(accessToken, messageId);
+
   var acquisioner = message.getFrom();
   var transactioner = message.getTo();
   var clientInfo = message.getBody().substring(0, 500); // safe truncate
